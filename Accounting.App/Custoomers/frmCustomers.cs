@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Accounting.App;
 namespace Accounting.App
 {
     public partial class frmCustomers : Form
@@ -69,7 +69,31 @@ namespace Accounting.App
             }
             else
             {
-                MessageBox.Show("لطفا شخصی را انتخاب کنید.");
+                RtlMessageBox.Show("لطفا شخصی را انتخاب کنید.");
+            }
+        }
+
+        private void btnAddNewCustomer_Click(object sender, EventArgs e)
+        {
+            frmAddOrEditCustomers frmAdd = new frmAddOrEditCustomers();
+            if(frmAdd.ShowDialog() == DialogResult.OK)
+            {
+                BindGrid();
+            }
+        }
+
+        private void btnEditCustomer_Click(object sender, EventArgs e)
+        {
+            if(dgCustomers.CurrentRow != null)
+            {
+                int customerId = int.Parse(dgCustomers.CurrentRow.Cells[0].Value.ToString());
+                frmAddOrEditCustomers frmAddOrEdit = new frmAddOrEditCustomers();
+
+                frmAddOrEdit.customerId = customerId;
+                if(frmAddOrEdit.ShowDialog() == DialogResult.OK)
+                {
+                    BindGrid();
+                }
             }
         }
     }

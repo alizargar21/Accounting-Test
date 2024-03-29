@@ -56,7 +56,7 @@
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(454, 67);
+            this.toolStrip1.Size = new System.Drawing.Size(585, 67);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -69,6 +69,7 @@
             this.btnAddNewCustomer.Size = new System.Drawing.Size(89, 64);
             this.btnAddNewCustomer.Text = "شخص جدید";
             this.btnAddNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click);
             // 
             // btnEditCustomer
             // 
@@ -79,6 +80,7 @@
             this.btnEditCustomer.Size = new System.Drawing.Size(105, 64);
             this.btnEditCustomer.Text = "ویرایش شخص";
             this.btnEditCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditCustomer.Click += new System.EventHandler(this.btnEditCustomer_Click);
             // 
             // btnDeleteCustomer
             // 
@@ -113,14 +115,14 @@
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Location = new System.Drawing.Point(0, 67);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(454, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(585, 25);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // txtFilter
             // 
             this.txtFilter.Location = new System.Drawing.Point(49, 20);
-            this.txtFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFilter.Margin = new System.Windows.Forms.Padding(2);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(76, 20);
             this.txtFilter.TabIndex = 2;
@@ -139,12 +141,12 @@
             this.Column3});
             this.dgCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgCustomers.Location = new System.Drawing.Point(0, 92);
-            this.dgCustomers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgCustomers.Margin = new System.Windows.Forms.Padding(2);
             this.dgCustomers.Name = "dgCustomers";
             this.dgCustomers.ReadOnly = true;
             this.dgCustomers.RowHeadersWidth = 51;
             this.dgCustomers.RowTemplate.Height = 24;
-            this.dgCustomers.Size = new System.Drawing.Size(454, 226);
+            this.dgCustomers.Size = new System.Drawing.Size(585, 270);
             this.dgCustomers.TabIndex = 3;
             // 
             // CustomerID
@@ -184,12 +186,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 318);
+            this.ClientSize = new System.Drawing.Size(585, 362);
             this.Controls.Add(this.dgCustomers);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCustomers";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

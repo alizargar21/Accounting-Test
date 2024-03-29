@@ -64,28 +64,35 @@ namespace Accounting.DataLayer.Services
         {
 
 
-          
-             try
-             {
-              
+
+            try
+            {
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                 return true;
+                return true;
 
-             }
-             catch
-             {
-                 return false;
-             } 
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-     
+
 
         public bool UpdateCustomer(Customers customer)
         {
             try
             {
-                db.Entry(customer).State= EntityState.Modified;
+                var local = db.Set<Customers>()
+                         .Local
+                         .FirstOrDefault(f => f.CustomerID == customer.CustomerID);
+                if (local != null)
+                {
+                    db.Entry(local).State = EntityState.Detached;
+                }
+                db.Entry(customer).State = EntityState.Modified;
                 return true;
 
             }
@@ -97,7 +104,7 @@ namespace Accounting.DataLayer.Services
 
         public IEnumerable<Customers> GetCustomersByFilter(string parameter)
         {
-            return db.Customers.Where(c => c.FullName.Contains(parameter) || c.Mobile.Contains(parameter) || c.Email.Contains(parameter));
+            return db.Customers.Where(c => c.FullName.Contains(parameter) || c.Mobile.Contains(parameter) || c.Email.Contains(parameter)).ToList();
         }
     }
 }
