@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Accounting.ViewModels.Customers;
 
 namespace Accounting.DataLayer.Services
 {
@@ -105,6 +106,29 @@ namespace Accounting.DataLayer.Services
         public IEnumerable<Customers> GetCustomersByFilter(string parameter)
         {
             return db.Customers.Where(c => c.FullName.Contains(parameter) || c.Mobile.Contains(parameter) || c.Email.Contains(parameter)).ToList();
+        }
+
+
+        public List<ListCustomerViewModel> GetNamesCustomers(string filter = "")
+        {
+           if(filter == "")
+            {
+                return db.Customers.Select(c => new ListCustomerViewModel()
+                {
+                    CustomerID = c.CustomerID,
+                    FullName = c.FullName
+                }).ToList();
+            }
+           return db.Customers.Where(c => c.FullName.Contains(filter)).Select(c => new ListCustomerViewModel()
+           {
+               CustomerID = c.CustomerID,
+               FullName = c.FullName
+           }).ToList();
+        }
+
+        public int GetCustomerIdByName(string name)
+        {
+            return db.Customers.First(c => c.FullName == name).CustomerID;
         }
     }
 }

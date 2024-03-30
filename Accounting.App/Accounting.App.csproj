@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction\frmNewTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\frmNewTransaction.Designer.cs">
+      <DependentUpon>frmNewTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinValidator\Validator\BaseValidator.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -121,6 +127,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Transaction\frmNewTransaction.resx">
+      <DependentUpon>frmNewTransaction.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -196,6 +205,10 @@
     <ProjectReference Include="..\Accounting.Utility\Accounting.Utility.csproj">
       <Project>{903bec79-631d-4e67-87c0-7ed692243586}</Project>
       <Name>Accounting.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Accounting.ViewModels\Accounting.ViewModels.csproj">
+      <Project>{c1c665ba-9602-40bb-8a46-32192614ca06}</Project>
+      <Name>Accounting.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
