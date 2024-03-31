@@ -27,5 +27,6 @@ namespace Accounting.DataLayer.Repositories
 
         int GetCustomerIdByName (string name);
 
+        string GetCustomerNameById(int CustomerID);
     }
 }
