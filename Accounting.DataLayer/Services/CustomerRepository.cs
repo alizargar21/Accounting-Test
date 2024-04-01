@@ -133,7 +133,7 @@ namespace Accounting.DataLayer.Services
 
         public string GetCustomerNameById(int CustomerID)
         {
-        return db.Customers.Find(CustomerID).FullName.ToString();
+        return db.Customers.Find(CustomerID).FullName;
         }
     }
 }

@@ -43,10 +43,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReports = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).BeginInit();
@@ -54,6 +55,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnEdit,
             this.btnDelete,
@@ -61,7 +63,7 @@
             this.btnPrint});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(684, 62);
+            this.toolStrip1.Size = new System.Drawing.Size(684, 67);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -71,9 +73,10 @@
             this.btnEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(47, 59);
+            this.btnEdit.Size = new System.Drawing.Size(59, 64);
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -81,7 +84,7 @@
             this.btnDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(44, 59);
+            this.btnDelete.Size = new System.Drawing.Size(45, 64);
             this.btnDelete.Text = "حذف";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -92,7 +95,7 @@
             this.btnRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(60, 59);
+            this.btnRefresh.Size = new System.Drawing.Size(76, 64);
             this.btnRefresh.Text = "بروزرسانی";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -103,7 +106,7 @@
             this.btnPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(44, 59);
+            this.btnPrint.Size = new System.Drawing.Size(44, 64);
             this.btnPrint.Text = "چاپ";
             this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -138,7 +141,7 @@
             this.txtToDate.Location = new System.Drawing.Point(127, 23);
             this.txtToDate.Mask = "0000/00/00";
             this.txtToDate.Name = "txtToDate";
-            this.txtToDate.Size = new System.Drawing.Size(100, 21);
+            this.txtToDate.Size = new System.Drawing.Size(100, 24);
             this.txtToDate.TabIndex = 7;
             this.txtToDate.ValidatingType = typeof(System.DateTime);
             // 
@@ -147,7 +150,7 @@
             this.txtFromDate.Location = new System.Drawing.Point(295, 23);
             this.txtFromDate.Mask = "0000/00/00";
             this.txtFromDate.Name = "txtFromDate";
-            this.txtFromDate.Size = new System.Drawing.Size(100, 21);
+            this.txtFromDate.Size = new System.Drawing.Size(100, 24);
             this.txtFromDate.TabIndex = 6;
             this.txtFromDate.ValidatingType = typeof(System.DateTime);
             // 
@@ -156,7 +159,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(233, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(55, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = " تا تاریخ ";
             // 
@@ -165,24 +168,26 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(401, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(51, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = " از تاریخ";
             // 
             // cbCustomer
             // 
+            this.cbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustomer.FormattingEnabled = true;
             this.cbCustomer.Location = new System.Drawing.Point(464, 23);
             this.cbCustomer.Name = "cbCustomer";
-            this.cbCustomer.Size = new System.Drawing.Size(121, 21);
+            this.cbCustomer.Size = new System.Drawing.Size(121, 25);
             this.cbCustomer.TabIndex = 1;
+            this.cbCustomer.SelectedIndexChanged += new System.EventHandler(this.cbCustomer_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(591, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.Size = new System.Drawing.Size(78, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "طرف حساب";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -195,57 +200,71 @@
             this.dgvReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.FullName,
-            this.Amount,
-            this.Description,
-            this.Date});
+            this.CustomerID,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
             this.dgvReports.GridColor = System.Drawing.SystemColors.Info;
             this.dgvReports.Location = new System.Drawing.Point(12, 125);
             this.dgvReports.Name = "dgvReports";
             this.dgvReports.ReadOnly = true;
+            this.dgvReports.RowHeadersWidth = 51;
             this.dgvReports.Size = new System.Drawing.Size(660, 300);
             this.dgvReports.TabIndex = 2;
             this.dgvReports.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReports_CellContentClick);
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "None";
+            this.Column1.DataPropertyName = "ID";
             this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
             // 
-            // FullName
+            // CustomerID
             // 
-            this.FullName.DataPropertyName = "FullName";
-            this.FullName.HeaderText = "طرف حساب";
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.HeaderText = "طرف حساب";
+            this.CustomerID.MinimumWidth = 6;
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
             // 
-            // Amount
+            // Column3
             // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "مبلغ";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
+            this.Column3.DataPropertyName = "Amount";
+            this.Column3.HeaderText = "مبلغ";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
-            // Description
+            // Column4
             // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "شرح";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
+            this.Column4.DataPropertyName = "Description";
+            this.Column4.HeaderText = "شرح";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
-            // Date
+            // Column5
             // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.HeaderText = "تاریخ";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
+            this.Column5.DataPropertyName = "Date";
+            this.Column5.HeaderText = "تاریخ";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "CustomerID";
+            this.Column6.HeaderText = "CustomerID";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // frmReports
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 437);
             this.Controls.Add(this.dgvReports);
@@ -284,9 +303,10 @@
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.DataGridView dgvReports;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
